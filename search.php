@@ -33,7 +33,7 @@
  mysql_select_db($dbName) or die (mysql_error());
  /* Составляем запрос для извлечения данных из полей "name", "email", "theme",
  "message", "data" таблицы "test_table" */
- $query = "SELECT * from `tours` order by `Name_tour`";
+ $query = "SELECT  * FROM $table WHERE `Type`='".$_POST['tour']."' " ;
  /* Выполняем запрос. Если произойдет ошибка - вывести ее. */
 
  $res = mysql_query($query) or die(mysql_error());

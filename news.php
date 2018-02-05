@@ -26,57 +26,80 @@
         <?include "header.php"?>
 
         <h1 style="text-align:center; color:#E64A19; margin: 50px;">Последние туры</h1>
-        <table class="table table-hover">
-          <thead class="thead-default">
+        <?php
+        include("connect.php");
+        $table = "tours";
+        /* Выбираем базу данных. Если произойдет ошибка - вывести еaе */
+        mysql_select_db($dbName) or die (mysql_error());
+        /* Составляем запрос для извлечения данных из полей "name", "email", "theme",
+        "message", "data" таблицы "test_table" */
+        $query = "SELECT * from `tours` order by `ID` desc LIMIT 2";
+        /* Выполняем запрос. Если произойдет ошибка - вывести ее. */
+
+        $res = mysql_query($query) or die(mysql_error());
+        /* Выводим данные из таблицы */
+        echo ("
+        <table class=\"table table-hover\">
+          <thead class=\"thead-default\">
             <tr>
-              <th style="color:#E64A19;">Изображение</th>
-              <th style="color:#E64A19;">Город</th>
-              <th style="color:#E64A19;">О туре</th>
-              <th style="color:#E64A19;">Вид тура</th>
-              <th style="color:#E64A19;">Гид</th>
-              <th style="color:#E64A19;">Цена</th>
+              <th style=\"color:#E64A19;\">Изображение</th>
+              <th style=\"color:#E64A19;\">Город</th>
+              <th style=\"color:#E64A19;\">О туре</th>
+              <th style=\"color:#E64A19;\">Вид тура</th>
+              <th style=\"color:#E64A19;\">Гид</th>
+              <th style=\"color:#E64A19;\">Цена</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <th scope="row"><img width="200" src="img/dayving.jpg"</th>
-              <td>Сочи</td>
-              <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</td>
-              <td>Экстримальный</td>
-              <td>Иванов Иван Иванович</td>
-              <td>2000р.</td>
-            </tr>
-            <tr>
-              <th scope="row"><img width="200" src="img/dayving.jpg"</th>
-              <td>Сочи</td>
-              <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</td>
-              <td>Экстримальный</td>
-              <td>Иванов Иван Иванович</td>
-              <td>2000р.</td>
-            </tr>
-          </tbody>
-        </table>
+          <tbody>");
+          while ($row = mysql_fetch_array($res)) {
+            echo "<tr>";
+              echo "<th scope=\"row\"><img width=\"200\" src=".$row['img']."></th>";
+              echo "<td>".$row['City']."</td>";
+             echo " <td>".$row['About']."</td>";
+              echo "<td>".$row['Type']."</td>";
+              echo "<td>".$row['Guide']."</td>";
+              echo "<td>".$row['Cost']."</td>";
+            echo "</tr>";
+        }
+          echo "</tbody>";
+        echo "</table>";
+        ?>
 
         <h1 style="text-align:center; color:#E64A19; margin: 50px;">Новости</h1>
+        <?php
+ include("connect.php");
+ $table = "news";
+ /* Выбираем базу данных. Если произойдет ошибка - вывести ее */
+ mysql_select_db($dbName) or die (mysql_error());
+ /* Составляем запрос для извлечения данных из полей "name", "email", "theme",
+ "message", "data" таблицы "test_table" */
+ $query = "SELECT  * FROM $table";
+ /* Выполняем запрос. Если произойдет ошибка - вывести ее. */
 
-        <table class="table table-hover">
-          <thead class="thead-default">
+ $res = mysql_query($query) or die(mysql_error());
+ /* Выводим данные из таблицы */
+ echo ("
+        <table class=\"table table-hover\">
+          <thead class=\"thead-default\">
             <tr>
-              <th style="color:#E64A19;">Заголовок</th>
-              <th style="color:#E64A19;">Полное описание</th>
-              <th style="color:#E64A19;">Дата</th>
-              <th style="color:#E64A19;">Источник</th>
+              <th style=\"color:#E64A19;\">Заголовок</th>
+              <th style=\"color:#E64A19;\">Полное описание</th>
+              <th style=\"color:#E64A19;\">Дата</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <td>Новость №1</td>
-              <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</td>
-              <td>04.02.2018</td>
-              <td>Проверенный источник</td>
-            </tr>
-          </tbody>
-        </table>
+          <tbody>");
+          while ($row = mysql_fetch_array($res)) {
+            echo "<tr>";
+
+              echo "<td>".$row['News_head']."</td>";
+              echo "<td>".$row['text']."</td>";
+             echo " <td>".$row['date']."</td>";
+
+            echo "</tr>";
+        }
+          echo "</tbody>";
+        echo "</table>";
+?>
 
 
         <!-- <?php

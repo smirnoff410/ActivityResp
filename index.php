@@ -38,7 +38,7 @@ $table = "rest_type";
 mysql_select_db($dbName) or die (mysql_error());
 /* Составляем запрос для извлечения данных из полей "name", "email", "theme",
 "message", "data" таблицы "test_table" */
-$query = "SELECT  * FROM $table";
+$query = "SELECT  * FROM $table WHERE `id`<4";
 /* Выполняем запрос. Если произойдет ошибка - вывести ее. */
 
 $res = mysql_query($query) or die(mysql_error());
@@ -46,18 +46,54 @@ $res = mysql_query($query) or die(mysql_error());
 while ($row = mysql_fetch_array($res)) {
 
                       echo"<div class=\"col-xs-6 item\">";
-                echo"<form>";
+                echo"<form name=\"search\" action=\"search.php\" method=\"post\">";
                     echo"<tr>";
                     echo"<td><img src=".$row['img']."></td>";
-                    echo"<td><h1>".$row['Name']."</h1></td>";
+                    echo"<td><h1><input required type=\"text\" value=\"".$row['Name']."\"name=\"tour\" readonly/></h1></td>";
                     echo"<td><p>".$row['About']."</p></td>";
                 echo"</tr>";
+                echo"<button type=\"submit\" class=\"btn btn-primary\" style=\"border: solid 1px #E64A19;background: #E64A19;\">Подробнее</button>";
                 echo"</form>";
                 echo"</div>";
                 }
 
                 mysql_close();
                 ?>
+
+
+</div>
+<div class="row">
+<?php
+include("connect.php");
+$table = "rest_type";
+
+
+/* Выбираем базу данных. Если произойдет ошибка - вывести ее */
+mysql_select_db($dbName) or die (mysql_error());
+/* Составляем запрос для извлечения данных из полей "name", "email", "theme",
+"message", "data" таблицы "test_table" */
+$query = "SELECT  * FROM $table WHERE `id`>3";
+/* Выполняем запрос. Если произойдет ошибка - вывести ее. */
+
+$res = mysql_query($query) or die(mysql_error());
+/* Выводим данные из таблицы */
+while ($row = mysql_fetch_array($res)) {
+
+              echo"<div class=\"col-xs-6 item\">";
+        echo"<form name=\"comment\" action=\"search.php\" method=\"post\">";
+            echo"<tr>";
+            echo"<td><img src=".$row['img']."></td>";
+            echo"<td><h1><input required type=\"text\" value=\"".$row['Name']."\"name=\"tour\" readonly/></h1></td>";
+            echo"<td><p>".$row['About']."</p></td>";
+        echo"</tr>";
+        echo"<button type=\"submit\" class=\"btn btn-primary\" style=\"border: solid 1px #E64A19;background: #E64A19;\">Подробнее</button>";
+        echo"</form>";
+        echo"</div>";
+        }
+
+        mysql_close();
+        ?>
+
 
 </div>
 

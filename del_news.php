@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <!-- saved from url=(0049)http://bootstrap-v4.ru/examples/narrow-jumbotron/ -->
 <html lang="ru">
 
@@ -25,47 +25,54 @@
     <div class="container">
         <?include "header.php"?>
 
-        <h1 style="text-align:center; color:#E64A19; margin: 50px;">Наши туры</h1>
+        <h1 style="text-align:center; color:#E64A19; margin: 50px;">Удаление тура</h1>
         <?php
  include("connect.php");
- $table = "tours";
+ $table = "news";
  /* Выбираем базу данных. Если произойдет ошибка - вывести ее */
  mysql_select_db($dbName) or die (mysql_error());
  /* Составляем запрос для извлечения данных из полей "name", "email", "theme",
  "message", "data" таблицы "test_table" */
- $query = "SELECT * from `tours` order by `Name_tour`";
- /* Выполняем запрос. Если произойдет ошибка - вывести ее. */
 
+ /* Выполняем запрос. Если произойдет ошибка - вывести ее. */
+ $del=$_GET['del'];
+ $query = "DELETE FROM {$table} WHERE (Id='{$del}')";
  $res = mysql_query($query) or die(mysql_error());
+ /* Если была нажата ссылка удаления, удаляем запись */
+  /* Выполняем запрос. Если произойдет ошибка - вывести ее. */
+  mysql_query($query) or die(mysql_error());   /* Заносим в переменную $res всю базу данных */
+  $query = "SELECT * FROM $table";
+  $res = mysql_query($query) or die(mysql_error());
+ /* Узнаем количество записей в базе данных */
+ $row = mysql_num_rows($res);
  /* Выводим данные из таблицы */
  echo ("
         <table class=\"table table-hover\">
           <thead class=\"thead-default\">
             <tr>
-              <th style=\"color:#E64A19;\">Изображение</th>
-              <th style=\"color:#E64A19;\">Имя тура</th>
-              <th style=\"color:#E64A19;\">Город</th>
-              <th style=\"color:#E64A19;\">О туре</th>
-              <th style=\"color:#E64A19;\">Вид тура</th>
-              <th style=\"color:#E64A19;\">Гид</th>
-              <th style=\"color:#E64A19;\">Цена</th>
+            <th style=\"color:#E64A19;\">Заголовок</th>
+            <th style=\"color:#E64A19;\">Полное описание</th>
+            <th style=\"color:#E64A19;\">Дата</th>
+              <th style=\"color:#E64A19;\">Удаление</th>
             </tr>
           </thead>
           <tbody>");
-          while ($row = mysql_fetch_array($res)) {
-            echo "<tr>";
-              echo "<th scope=\"row\"><img width=\"200\" src=".$row['img']."></th>";
-              echo "<td>".$row['Name_tour']."</td>";
-              echo "<td>".$row['City']."</td>";
-             echo " <td>".$row['About']."</td>";
-              echo "<td>".$row['Type']."</td>";
-              echo "<td>".$row['Guide']."</td>";
-              echo "<td>".$row['Cost']."</td>";
-            echo "</tr>";
-        }
-          echo "</tbody>";
-        echo "</table>";
-?>
+     /* Цикл вывода данных из базы конкретных полей */
+     while ($row = mysql_fetch_array($res)) {
+       echo "<tr>";
+       echo "<td>".$row['News_head']."</td>";
+       echo "<td>".$row['text']."</td>";
+      echo " <td>".$row['date']."</td>";
+           /* Генерируем ссылку для удаления поля */
+           echo "<td><a name=\"del\" href=\"del_news.php?del=".$row['id']."\">Удалить</a></td>\n";
+           echo "</tr>\n";
+       }
+       echo ("</table>\n");
+        /* Закрываем соединение */
+        mysql_close();   /* Выводим ссылку возврата */
+        echo ("<div style=\"text-align:center; margin-top:10px;\"><a href=\"admin.php\">Вернуться назад</a></div>");
+        echo(" </body>");
+  ?>
 
 <?include "footer.php"?>
 

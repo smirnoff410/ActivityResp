@@ -92,6 +92,12 @@ nav ul ul li {
     height: 250px;
 }
 
+h1 input[type="text"] {
+    text-align: center;
+    background: #E64A19;
+    color: #fff;
+}
+
 /*Форма регистрации*/
 #login a {
 	color: red;
@@ -143,7 +149,7 @@ nav ul ul li {
 	outline:none;
 }
 
-#login form input[type="text"], input[type="password"] {
+#login form input[type="text"], #login form input[type="password"] {
 	background-color: #3b4148;
 	border-radius: 0px 3px 3px 0px;
 	-moz-border-radius: 0px 3px 3px 0px;
@@ -171,6 +177,23 @@ nav ul ul li {
 	width: 280px;
 }
 
+.reg_btn {
+background-color: #E64A19;
+margin: 10px;
+color: #fff;
+}
+
+.box {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 10px;
+}
+
+.box div {
+
+}
+
 #login form input[type="submit"]:hover {
 	background-color: #E64A19;
 }
@@ -181,6 +204,35 @@ nav ul ul li {
 
 #login > p span {
 	padding-left: 5px;
+}
+
+/*Отзывы*/
+.feedback-wrapper {
+    display: flex;
+    flex-direction: row;
+}
+
+.feedback {
+    width: 700px;
+    margin: 0 auto;
+    background: #fff;
+    border: 1px solid #000;
+    margin: 20px;
+    padding: 20px;
+}
+
+.feedback-content {
+    display: flex;
+    flex-direction: row;
+}
+
+.feedback-content p, .feedback-content div {
+    flex: 1 1 100px;
+}
+
+.feedback-form {
+    width: 400px;
+    margin: 0 auto;
 }
 
 

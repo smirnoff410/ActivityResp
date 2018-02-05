@@ -1,0 +1,5 @@
+
+RewriteBase /
+AddDefaultCharset UTF-8
+php_value error_reporting 1
+ErrorDocument 404 /404.php

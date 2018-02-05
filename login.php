@@ -23,9 +23,10 @@
 
     <div class="container">
         <?include "header.php"?>
+        <h1 style="text-align:center; color:#E64A19; margin: 50px;">Авторизация</h1>
 
         <div id="login">
-            <form action="javascript:void(0);" method="post">
+            <form action="auto.php" method="post">
                 <fieldset class="clearfix">
                     <tr><td><p><span class="fontawesome-user"></span><input name=login maxlength=30 size=30 type="text" value="Логин" onBlur="if(this.value == '') this.value = 'Логин'" onFocus="if(this.value == 'Логин') this.value = ''" required></p></tr></td>
                     <!-- JS because of IE support; better: placeholder="Username" -->
@@ -34,7 +35,7 @@
                     <tr><td><p><input type="submit" value="ВОЙТИ"></p></tr></td>
                 </fieldset>
             </form>
-            <p>Нет аккаунта? &nbsp;&nbsp;<a href="registr.php">Регистрация</a><span class="fontawesome-arrow-right"></span></p>
+            <p>Нет аккаунта? &nbsp;&nbsp;<a href="reg.php">Регистрация</a><span class="fontawesome-arrow-right"></span></p>
         </div>
         <div class="gradient"></div>
 
