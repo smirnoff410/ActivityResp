@@ -33,9 +33,11 @@
          <th style="color:#E64A19;">Изображение</th>
          <td><input required type="text" name="img" maxlength="30" style="width:400px;" placeholder="img/..."/></td>
          </tr>
+         <tr>
          <th style="color:#E64A19;">Название тура</th>
          <td><input required type="text" name="Name_tour" maxlength="30" style="width:400px;"/></td>
          </tr>
+         <tr>
          <th style="color:#E64A19;">Город</th>
          <td>
 

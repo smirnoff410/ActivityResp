@@ -42,7 +42,7 @@
                   -webkit-border-radius: 5px;
                   border-radius: 5px;
                   margin: 5px;
-                  display:inline;" name="5" value="Удалить тур" onClick='location.href="del_tour.php"'></div>
+                  display:inline;" name="5" value="Удалить Тур" onClick='location.href="del_tour.php"'></div>
 
                   </div>
                   <div class="box">
@@ -102,6 +102,25 @@
                      display:inline;" name="5" value="Удалить новость" onClick='location.href="del_news.php"'></div>
 
                      </div>
+                     <div class="box">
+
+                   <div><input type="button" style="padding:5px 15px; background:#E64A19; border:0 none;
+                       cursor:pointer;
+                    color: #fff;
+                       -webkit-border-radius: 5px;
+                       border-radius: 5px;
+                       margin: 5px;
+                       display:inline;" name="4" value="Добавить город" onClick='location.href="city_add.php"'></div>
+
+                  <div><input type="button"style="padding:5px 15px; background:#E64A19; border:0 none;
+                      cursor:pointer;
+                      color: #fff;
+                      -webkit-border-radius: 5px;
+                      border-radius: 5px;
+                      margin: 5px;
+                      display:inline;" name="5" value="Удалить город" onClick='location.href="del_city.php"'></div>
+
+                      </div>
           </div>
 
 <?include "footer.php"?>
